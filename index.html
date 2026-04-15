@@ -13,9 +13,7 @@
         .glass { background: rgba(15, 28, 26, 0.95); backdrop-filter: blur(20px); }
         
         .neon-text {
-            text-shadow: 
-            0 0 15px #10b981,
-            0 0 30px #10b981;
+            text-shadow: 0 0 15px #10b981, 0 0 30px #10b981;
         }
         
         .banner-scroll {
@@ -44,13 +42,14 @@
         <!-- LEFT CARD -->
         <div class="lg:col-span-7 glass border border-white/10 rounded-3xl p-7">
             
-            <!-- Jumlah Taruhan -->
+            <!-- JUMALAH TARUHAN - SUDAH DIRAPIKAN -->
             <div class="mb-7">
                 <label class="text-emerald-400 text-xs font-medium mb-2 block">JUMLAH TARUHAN</label>
-                <div class="bg-[#11221f] border border-white/10 rounded-3xl px-7 py-6 text-5xl font-semibold flex items-center">
+                <div class="bg-[#11221f] border border-white/10 rounded-3xl px-7 py-6 flex items-center">
                     <span class="text-3xl text-zinc-400 mr-4">Rp</span>
                     <input id="jumlah-taruhan" type="text" 
-                           class="bg-transparent outline-none flex-1 text-right" placeholder="100.000" autofocus>
+                           class="bg-transparent outline-none flex-1 text-4xl font-semibold text-right min-w-0"
+                           placeholder="100.000" autofocus>
                 </div>
             </div>
 
@@ -155,11 +154,7 @@
     let oddsCount = 3
 
     function formatRupiah(angka) {
-        return new Intl.NumberFormat('id-ID', { 
-            style: 'currency', 
-            currency: 'IDR', 
-            minimumFractionDigits: 0 
-        }).format(angka).replace('Rp', 'Rp ')
+        return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(angka).replace('Rp', 'Rp ')
     }
 
     function formatRibuan(value) {
