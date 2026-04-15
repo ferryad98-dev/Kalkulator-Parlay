@@ -96,7 +96,7 @@
         </div>
     </div>
 
-    <!-- SUPPORTED BY -->
+    <!-- SUPPORTED BY - SEMUA 8 BANNER SUDAH DITAMBAHKAN -->
     <div class="mt-16 text-center">
         <p class="text-zinc-500 text-sm tracking-widest mb-6">SUPPORTED BY</p>
         <div class="flex flex-wrap justify-center items-center gap-6 opacity-90">
@@ -104,6 +104,10 @@
             <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_poker88_POKER88_Banners_2.gif" alt="Poker88" class="h-12">
             <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_dominobet_dominobet_gif_720x89.gif" alt="Dominobet" class="h-12">
             <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_nagapoker_nagapoker-gift.gif" alt="Nagapoker" class="h-12">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_lapak303_lapak303_gif_720x89.gif" alt="Lapak303" class="h-12">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_kartupoker_kartupoker_gif_720x89.gif" alt="Kartupoker" class="h-12">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_domino88_domino88_gif_720x89.gif" alt="Domino88" class="h-12">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_remipoker_remipoker_gif_720x89.gif" alt="Remipoker" class="h-12">
         </div>
     </div>
 </div>
@@ -204,7 +208,6 @@
         breakdownEl.innerHTML = breakdownHTML
     }
 
-    // Event listeners
     tambahBtn.addEventListener('click', () => { oddsCount++; renderOdds() })
     kurangiBtn.addEventListener('click', () => { if (oddsCount > 1) { oddsCount--; renderOdds() } })
 
@@ -222,7 +225,6 @@
         })
     })
 
-    // Real-time
     function addListeners() {
         oddsContainer.addEventListener('input', calculateParlay)
         oddsContainer.addEventListener('change', calculateParlay)
@@ -233,7 +235,6 @@
         })
     }
 
-    // Init
     renderOdds()
     addListeners()
 </script>
