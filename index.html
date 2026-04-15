@@ -11,6 +11,22 @@
         body { font-family: 'Inter', sans-serif; }
         .title-font { font-family: 'Space Grotesk', sans-serif; }
         .glass { background: rgba(15, 28, 26, 0.95); backdrop-filter: blur(20px); }
+        
+        /* Neon Glow */
+        .neon-text {
+            text-shadow: 
+            0 0 10px #10b981,
+            0 0 20px #10b981,
+            0 0 40px #10b981;
+        }
+        
+        /* Horizontal Scroll Banner */
+        .banner-scroll {
+            scrollbar-width: none;
+        }
+        .banner-scroll::-webkit-scrollbar {
+            display: none;
+        }
     </style>
 </head>
 <body class="bg-gradient-to-b from-[#0a1f1a] via-[#05130f] to-black text-white min-h-screen">
@@ -33,17 +49,17 @@
         <!-- LEFT CARD -->
         <div class="lg:col-span-7 glass border border-white/10 rounded-3xl p-8">
             
-            <!-- Jumlah Taruhan (SEKARANG KOSONG) -->
+            <!-- Jumlah Taruhan -->
             <div class="mb-8">
                 <label class="text-emerald-400 text-sm font-medium mb-3 block">JUMLAH TARUHAN</label>
                 <div class="bg-[#11221f] border border-white/10 rounded-3xl px-8 py-7 text-6xl font-semibold flex items-center">
                     <span class="text-4xl text-zinc-400 mr-4">Rp</span>
                     <input id="jumlah-taruhan" type="text" 
-                           class="bg-transparent outline-none flex-1" placeholder="100.000">
+                           class="bg-transparent outline-none flex-1" placeholder="100.000" autofocus>
                 </div>
             </div>
 
-            <!-- Odds Container (juga kosong) -->
+            <!-- Odds Container -->
             <div id="odds-container" class="space-y-5"></div>
 
             <!-- Buttons -->
@@ -56,6 +72,10 @@
                         class="flex-1 bg-[#11221f] hover:bg-red-600 font-semibold py-6 rounded-3xl text-xl transition-all">
                     KURANGI ODDS
                 </button>
+                <button id="contoh-parlay"
+                        class="flex-1 bg-emerald-600 hover:bg-emerald-500 font-semibold py-6 rounded-3xl text-xl flex items-center justify-center gap-3 transition-all">
+                    <i class="fas fa-magic"></i> CONTOH PARLAY
+                </button>
             </div>
         </div>
 
@@ -66,10 +86,10 @@
                 <!-- Total Kemenangan -->
                 <div>
                     <label class="text-emerald-400 text-sm font-medium mb-3 block">TOTAL KEMENANGAN</label>
-                    <div id="total-kemenangan" class="text-6xl font-bold mb-3">Rp 0</div>
+                    <div id="total-kemenangan" class="text-6xl font-bold mb-3 neon-text">Rp 0</div>
                     <div class="bg-black/70 inline-flex items-center rounded-3xl px-7 py-3 gap-4">
                         <span class="text-emerald-400 font-medium">MULTIPLIER</span>
-                        <span id="multiplier" class="text-4xl font-bold text-emerald-400">x1.00</span>
+                        <span id="multiplier" class="text-4xl font-bold text-emerald-400 neon-text">x1.00</span>
                     </div>
                 </div>
 
@@ -96,18 +116,18 @@
         </div>
     </div>
 
-    <!-- SUPPORTED BY -->
+    <!-- SUPPORTED BY - Horizontal Scroll -->
     <div class="mt-16 text-center">
         <p class="text-zinc-500 text-sm tracking-widest mb-6">SUPPORTED BY</p>
-        <div class="flex flex-wrap justify-center items-center gap-6 opacity-90">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_dewapoker_dewapoker_gif_720x89.gif" alt="Dewapoker" class="h-12">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_poker88_POKER88_Banners_2.gif" alt="Poker88" class="h-12">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_dominobet_dominobet_gif_720x89.gif" alt="Dominobet" class="h-12">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_nagapoker_nagapoker-gift.gif" alt="Nagapoker" class="h-12">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_lapak303_lapak303_gif_720x89.gif" alt="Lapak303" class="h-12">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_kartupoker_kartupoker_gif_720x89.gif" alt="Kartupoker" class="h-12">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_domino88_domino88_gif_720x89.gif" alt="Domino88" class="h-12">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_remipoker_remipoker_gif_720x89.gif" alt="Remipoker" class="h-12">
+        <div class="banner-scroll flex overflow-x-auto gap-6 pb-4 snap-x snap-mandatory scroll-smooth">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_dewapoker_dewapoker_gif_720x89.gif" alt="Dewapoker" class="h-12 flex-shrink-0 snap-center">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_poker88_POKER88_Banners_2.gif" alt="Poker88" class="h-12 flex-shrink-0 snap-center">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_dominobet_dominobet_gif_720x89.gif" alt="Dominobet" class="h-12 flex-shrink-0 snap-center">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_nagapoker_nagapoker-gift.gif" alt="Nagapoker" class="h-12 flex-shrink-0 snap-center">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_lapak303_lapak303_gif_720x89.gif" alt="Lapak303" class="h-12 flex-shrink-0 snap-center">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_kartupoker_kartupoker_gif_720x89.gif" alt="Kartupoker" class="h-12 flex-shrink-0 snap-center">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_domino88_domino88_gif_720x89.gif" alt="Domino88" class="h-12 flex-shrink-0 snap-center">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_remipoker_remipoker_gif_720x89.gif" alt="Remipoker" class="h-12 flex-shrink-0 snap-center">
         </div>
     </div>
 </div>
@@ -124,6 +144,7 @@
     const kurangiBtn = document.getElementById('kurangi-odds')
     const resetBtn = document.getElementById('reset')
     const copyBtn = document.getElementById('copy-result')
+    const contohBtn = document.getElementById('contoh-parlay')
 
     let oddsCount = 3
 
@@ -137,6 +158,25 @@
 
     function formatRibuan(value) {
         return value.replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    }
+
+    function countUp(element, target, duration = 800) {
+        let start = 0
+        const startTime = performance.now()
+        
+        function animate(currentTime) {
+            const elapsed = currentTime - startTime
+            const progress = Math.min(elapsed / duration, 1)
+            const value = Math.floor(progress * target)
+            element.textContent = formatRupiah(value)
+            
+            if (progress < 1) {
+                requestAnimationFrame(animate)
+            } else {
+                element.textContent = formatRupiah(target)
+            }
+        }
+        requestAnimationFrame(animate)
     }
 
     function createOddRow(index) {
@@ -203,16 +243,18 @@
 
         const total = kalah ? 0 : jumlah * totalMultiplier
 
-        totalKemenanganEl.textContent = formatRupiah(total)
+        // Count-up animation
+        countUp(totalKemenanganEl, total)
         multiplierEl.textContent = `x${totalMultiplier.toFixed(2)}`
         breakdownEl.innerHTML = breakdownHTML || '<p class="text-zinc-400 italic text-center py-8">Isi jumlah taruhan & odds untuk melihat hasil</p>'
     }
 
+    // Event listeners
     tambahBtn.addEventListener('click', () => { oddsCount++; renderOdds() })
     kurangiBtn.addEventListener('click', () => { if (oddsCount > 1) { oddsCount--; renderOdds() } })
 
     resetBtn.addEventListener('click', () => {
-        jumlahTaruhanInput.value = ''          // kosongkan jumlah taruhan
+        jumlahTaruhanInput.value = ''
         oddsCount = 3
         renderOdds()
     })
@@ -223,6 +265,20 @@
             copyBtn.innerHTML = `✅ COPIED!`
             setTimeout(() => { copyBtn.innerHTML = `<i class="fas fa-copy"></i> COPY HASIL` }, 2000)
         })
+    })
+
+    // Contoh Parlay
+    contohBtn.addEventListener('click', () => {
+        jumlahTaruhanInput.value = '100000'
+        oddsCount = 3
+        renderOdds()
+        
+        // Isi contoh odds
+        setTimeout(() => {
+            const oddsInputs = oddsContainer.querySelectorAll('.odds')
+            oddsInputs.forEach(input => input.value = '1,85')
+            calculateParlay()
+        }, 100)
     })
 
     function addListeners() {
