@@ -14,31 +14,15 @@
         
         .neon-text {
             text-shadow: 
-            0 0 10px #10b981,
-            0 0 20px #10b981,
-            0 0 40px #10b981;
+            0 0 15px #10b981,
+            0 0 30px #10b981,
+            0 0 50px #10b981;
         }
         
         .banner-scroll {
             scrollbar-width: none;
         }
-        .banner-scroll::-webkit-scrollbar {
-            display: none;
-        }
-
-        /* Loading Spinner */
-        .spinner {
-            border: 4px solid rgba(16, 185, 129, 0.2);
-            border-top: 4px solid #10b981;
-            border-radius: 50%;
-            width: 48px;
-            height: 48px;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+        .banner-scroll::-webkit-scrollbar { display: none; }
     </style>
 </head>
 <body class="bg-gradient-to-b from-[#0a1f1a] via-[#05130f] to-black text-white min-h-screen">
@@ -61,17 +45,20 @@
         <!-- LEFT CARD -->
         <div class="lg:col-span-7 glass border border-white/10 rounded-3xl p-8">
             
+            <!-- Jumlah Taruhan -->
             <div class="mb-8">
                 <label class="text-emerald-400 text-sm font-medium mb-3 block">JUMLAH TARUHAN</label>
-                <div class="bg-[#11221f] border border-white/10 rounded-3xl px-8 py-7 text-6xl font-semibold flex items-center">
-                    <span class="text-4xl text-zinc-400 mr-4">Rp</span>
+                <div class="bg-[#11221f] border border-white/10 rounded-3xl px-8 py-8 text-6xl font-semibold flex items-center">
+                    <span class="text-4xl text-zinc-400 mr-5">Rp</span>
                     <input id="jumlah-taruhan" type="text" 
-                           class="bg-transparent outline-none flex-1" placeholder="100.000" autofocus>
+                           class="bg-transparent outline-none flex-1 text-right" placeholder="100.000" autofocus>
                 </div>
             </div>
 
+            <!-- Odds Container -->
             <div id="odds-container" class="space-y-5"></div>
 
+            <!-- Buttons -->
             <div class="flex gap-4 mt-10">
                 <button id="tambah-odds" 
                         class="flex-1 bg-white text-black font-semibold py-6 rounded-3xl text-xl flex items-center justify-center gap-3 hover:bg-emerald-400 transition-all">
@@ -83,7 +70,7 @@
                 </button>
                 <button id="contoh-parlay"
                         class="flex-1 bg-emerald-600 hover:bg-emerald-500 font-semibold py-6 rounded-3xl text-xl flex items-center justify-center gap-3 transition-all">
-                    <i class="fas fa-magic"></i> CONTOH PARLAY
+                    <i class="fas fa-pencil"></i> CONTOH PARLAY
                 </button>
             </div>
         </div>
@@ -92,31 +79,28 @@
         <div class="lg:col-span-5">
             <div class="glass border border-emerald-500/30 rounded-3xl p-8 h-full flex flex-col">
                 
-                <!-- Total Kemenangan + Loading -->
+                <!-- Total Kemenangan -->
                 <div>
                     <label class="text-emerald-400 text-sm font-medium mb-3 block">TOTAL KEMENANGAN</label>
-                    <div id="total-area" class="relative min-h-[80px] flex items-center justify-center">
-                        <!-- Loading State -->
+                    <div id="total-area" class="relative min-h-[100px] flex items-center justify-center">
                         <div id="loading-spinner" class="hidden flex flex-col items-center">
                             <div class="spinner"></div>
                             <p class="text-emerald-400 text-sm mt-3 tracking-widest">MENGHITUNG...</p>
                         </div>
-                        
-                        <!-- Normal Result -->
                         <div id="result-content">
-                            <div id="total-kemenangan" class="text-6xl font-bold neon-text">Rp 0</div>
+                            <div id="total-kemenangan" class="text-7xl font-bold neon-text">Rp 0</div>
                         </div>
                     </div>
                     
-                    <div class="bg-black/70 inline-flex items-center rounded-3xl px-7 py-3 gap-4 mt-4">
-                        <span class="text-emerald-400 font-medium">MULTIPLIER</span>
-                        <span id="multiplier" class="text-4xl font-bold text-emerald-400 neon-text">x1.00</span>
+                    <div class="bg-black/70 inline-flex items-center rounded-3xl px-8 py-4 gap-4 mt-4">
+                        <span class="text-emerald-400 font-medium text-lg">MULTIPLIER</span>
+                        <span id="multiplier" class="text-5xl font-bold text-emerald-400 neon-text">x1.00</span>
                     </div>
                 </div>
 
                 <!-- Breakdown -->
-                <div class="mt-10 flex-1">
-                    <h3 class="flex items-center gap-3 text-emerald-400 font-medium mb-6">
+                <div class="mt-12 flex-1">
+                    <h3 class="flex items-center gap-3 text-emerald-400 font-medium mb-6 text-lg">
                         <i class="fas fa-list-check"></i> BREAKDOWN PARLAY
                     </h3>
                     <div id="breakdown" class="space-y-5"></div>
@@ -154,6 +138,7 @@
 </div>
 
 <script>
+    // (Script tetap sama seperti sebelumnya, hanya sedikit penyesuaian layout)
     tailwind.config = { content: ["./**/*.{html,js}"] }
 
     const jumlahTaruhanInput = document.getElementById('jumlah-taruhan')
@@ -276,7 +261,6 @@
         breakdownEl.innerHTML = breakdownHTML || '<p class="text-zinc-400 italic text-center py-8">Isi jumlah taruhan & odds untuk melihat hasil</p>'
     }
 
-    // Event Listeners
     tambahBtn.addEventListener('click', () => { oddsCount++; renderOdds() })
     kurangiBtn.addEventListener('click', () => { if (oddsCount > 1) { oddsCount--; renderOdds() } })
 
@@ -294,21 +278,17 @@
         })
     })
 
-    // Contoh Parlay dengan Loading Animation
     contohBtn.addEventListener('click', () => {
         showLoading()
-        
         setTimeout(() => {
             jumlahTaruhanInput.value = '100000'
             oddsCount = 3
             renderOdds()
-            
             const oddsInputs = oddsContainer.querySelectorAll('.odds')
             oddsInputs.forEach(input => input.value = '1,85')
-            
             hideLoading()
             calculateParlay()
-        }, 650) // durasi loading
+        }, 650)
     })
 
     function addListeners() {
@@ -321,7 +301,6 @@
         })
     }
 
-    // Init
     renderOdds()
     addListeners()
 </script>
