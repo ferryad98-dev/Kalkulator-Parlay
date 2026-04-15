@@ -12,7 +12,6 @@
         .title-font { font-family: 'Space Grotesk', sans-serif; }
         .glass { background: rgba(15, 28, 26, 0.95); backdrop-filter: blur(20px); }
         
-        /* Neon Glow */
         .neon-text {
             text-shadow: 
             0 0 10px #10b981,
@@ -20,12 +19,25 @@
             0 0 40px #10b981;
         }
         
-        /* Horizontal Scroll Banner */
         .banner-scroll {
             scrollbar-width: none;
         }
         .banner-scroll::-webkit-scrollbar {
             display: none;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            border: 4px solid rgba(16, 185, 129, 0.2);
+            border-top: 4px solid #10b981;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -49,7 +61,6 @@
         <!-- LEFT CARD -->
         <div class="lg:col-span-7 glass border border-white/10 rounded-3xl p-8">
             
-            <!-- Jumlah Taruhan -->
             <div class="mb-8">
                 <label class="text-emerald-400 text-sm font-medium mb-3 block">JUMLAH TARUHAN</label>
                 <div class="bg-[#11221f] border border-white/10 rounded-3xl px-8 py-7 text-6xl font-semibold flex items-center">
@@ -59,10 +70,8 @@
                 </div>
             </div>
 
-            <!-- Odds Container -->
             <div id="odds-container" class="space-y-5"></div>
 
-            <!-- Buttons -->
             <div class="flex gap-4 mt-10">
                 <button id="tambah-odds" 
                         class="flex-1 bg-white text-black font-semibold py-6 rounded-3xl text-xl flex items-center justify-center gap-3 hover:bg-emerald-400 transition-all">
@@ -83,11 +92,23 @@
         <div class="lg:col-span-5">
             <div class="glass border border-emerald-500/30 rounded-3xl p-8 h-full flex flex-col">
                 
-                <!-- Total Kemenangan -->
+                <!-- Total Kemenangan + Loading -->
                 <div>
                     <label class="text-emerald-400 text-sm font-medium mb-3 block">TOTAL KEMENANGAN</label>
-                    <div id="total-kemenangan" class="text-6xl font-bold mb-3 neon-text">Rp 0</div>
-                    <div class="bg-black/70 inline-flex items-center rounded-3xl px-7 py-3 gap-4">
+                    <div id="total-area" class="relative min-h-[80px] flex items-center justify-center">
+                        <!-- Loading State -->
+                        <div id="loading-spinner" class="hidden flex flex-col items-center">
+                            <div class="spinner"></div>
+                            <p class="text-emerald-400 text-sm mt-3 tracking-widest">MENGHITUNG...</p>
+                        </div>
+                        
+                        <!-- Normal Result -->
+                        <div id="result-content">
+                            <div id="total-kemenangan" class="text-6xl font-bold neon-text">Rp 0</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-black/70 inline-flex items-center rounded-3xl px-7 py-3 gap-4 mt-4">
                         <span class="text-emerald-400 font-medium">MULTIPLIER</span>
                         <span id="multiplier" class="text-4xl font-bold text-emerald-400 neon-text">x1.00</span>
                     </div>
@@ -116,7 +137,7 @@
         </div>
     </div>
 
-    <!-- SUPPORTED BY - Horizontal Scroll -->
+    <!-- SUPPORTED BY -->
     <div class="mt-16 text-center">
         <p class="text-zinc-500 text-sm tracking-widest mb-6">SUPPORTED BY</p>
         <div class="banner-scroll flex overflow-x-auto gap-6 pb-4 snap-x snap-mandatory scroll-smooth">
@@ -145,6 +166,8 @@
     const resetBtn = document.getElementById('reset')
     const copyBtn = document.getElementById('copy-result')
     const contohBtn = document.getElementById('contoh-parlay')
+    const loadingSpinner = document.getElementById('loading-spinner')
+    const resultContent = document.getElementById('result-content')
 
     let oddsCount = 3
 
@@ -163,20 +186,25 @@
     function countUp(element, target, duration = 800) {
         let start = 0
         const startTime = performance.now()
-        
         function animate(currentTime) {
             const elapsed = currentTime - startTime
             const progress = Math.min(elapsed / duration, 1)
             const value = Math.floor(progress * target)
             element.textContent = formatRupiah(value)
-            
-            if (progress < 1) {
-                requestAnimationFrame(animate)
-            } else {
-                element.textContent = formatRupiah(target)
-            }
+            if (progress < 1) requestAnimationFrame(animate)
+            else element.textContent = formatRupiah(target)
         }
         requestAnimationFrame(animate)
+    }
+
+    function showLoading() {
+        resultContent.classList.add('hidden')
+        loadingSpinner.classList.remove('hidden')
+    }
+
+    function hideLoading() {
+        loadingSpinner.classList.add('hidden')
+        resultContent.classList.remove('hidden')
     }
 
     function createOddRow(index) {
@@ -243,13 +271,12 @@
 
         const total = kalah ? 0 : jumlah * totalMultiplier
 
-        // Count-up animation
         countUp(totalKemenanganEl, total)
         multiplierEl.textContent = `x${totalMultiplier.toFixed(2)}`
         breakdownEl.innerHTML = breakdownHTML || '<p class="text-zinc-400 italic text-center py-8">Isi jumlah taruhan & odds untuk melihat hasil</p>'
     }
 
-    // Event listeners
+    // Event Listeners
     tambahBtn.addEventListener('click', () => { oddsCount++; renderOdds() })
     kurangiBtn.addEventListener('click', () => { if (oddsCount > 1) { oddsCount--; renderOdds() } })
 
@@ -267,18 +294,21 @@
         })
     })
 
-    // Contoh Parlay
+    // Contoh Parlay dengan Loading Animation
     contohBtn.addEventListener('click', () => {
-        jumlahTaruhanInput.value = '100000'
-        oddsCount = 3
-        renderOdds()
+        showLoading()
         
-        // Isi contoh odds
         setTimeout(() => {
+            jumlahTaruhanInput.value = '100000'
+            oddsCount = 3
+            renderOdds()
+            
             const oddsInputs = oddsContainer.querySelectorAll('.odds')
             oddsInputs.forEach(input => input.value = '1,85')
+            
+            hideLoading()
             calculateParlay()
-        }, 100)
+        }, 650) // durasi loading
     })
 
     function addListeners() {
