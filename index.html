@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Kalkulator Parlay Modern - Hitung parlay dengan cepat dan akurat">
-    <title>MP PARLAY • Kalkulator Parlay</title>
+    <title>PARLAY • Kalkulator Parlay</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
@@ -16,88 +15,83 @@
             font-family: 'Space Grotesk', sans-serif;
         }
         .glass {
-            background: rgba(255,255,255,0.08);
+            background: rgba(0, 0, 0, 0.65);
             backdrop-filter: blur(16px);
         }
     </style>
 </head>
-<body class="bg-zinc-950 text-white min-h-screen bg-[radial-gradient(at_top,#052e16_0%,#000_50%)]">
+<body class="bg-gradient-to-b from-[#0a1f1a] to-[#000000] text-white min-h-screen">
 
 <div class="max-w-5xl mx-auto px-6 py-10">
 
     <!-- Header -->
-    <div class="flex justify-between items-center mb-10">
-        <div class="flex items-center gap-4">
-            <div class="w-12 h-12 bg-emerald-500 rounded-2xl flex items-center justify-center text-4xl">⚽</div>
-            <h1 class="title-font text-6xl font-bold tracking-tighter">PARLAY</h1>
+    <div class="flex justify-between items-center mb-12">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-emerald-500 rounded-2xl flex items-center justify-center text-3xl">⚽</div>
+            <h1 class="title-font text-5xl font-bold tracking-tighter">PARLAY</h1>
         </div>
-        <div>
-            <span class="px-4 py-2 bg-emerald-500/10 text-emerald-400 rounded-3xl text-sm font-medium border border-emerald-500/30">
+        <div class="px-5 py-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm font-medium rounded-3xl">
             V2.0 • Modern
-          </span>
         </div>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
-        <!-- FORM -->
-        <div class="lg:col-span-7">
-            <div class="glass border border-white/10 rounded-3xl p-8 shadow-2xl">
-
-                <!-- Jumlah Taruhan -->
-                <div class="mb-8">
-                    <label class="block text-emerald-400 text-sm font-medium mb-3 tracking-widest">JUMLAH TARUHAN</label>
-                    <div class="relative">
-                        <span class="absolute left-6 top-1/2 -translate-y-1/2 text-4xl text-zinc-400">Rp</span>
-                        <input id="jumlah-taruhan" 
-                               type="text"
-                               class="w-full bg-zinc-900 border border-zinc-700 focus:border-emerald-500 rounded-2xl px-14 py-6 text-5xl font-semibold outline-none transition-all"
-                               placeholder="100.000" value="100000">
-                    </div>
+        <!-- LEFT: Input -->
+        <div class="lg:col-span-7 glass border border-white/10 rounded-3xl p-8">
+            
+            <!-- Jumlah Taruhan -->
+            <div class="mb-8">
+                <label class="block text-emerald-400 text-sm font-medium mb-3">JUMLAH TARUHAN</label>
+                <div class="relative">
+                    <span class="absolute left-6 top-1/2 -translate-y-1/2 text-4xl text-zinc-400">Rp</span>
+                    <input id="jumlah-taruhan" type="text"
+                           class="w-full bg-[#1a2a27] border border-white/20 focus:border-emerald-500 rounded-2xl px-14 py-7 text-6xl font-semibold outline-none text-white"
+                           value="100000">
                 </div>
+            </div>
 
-                <!-- Odds Container -->
-                <div id="odds-container" class="space-y-5 mb-8"></div>
+            <!-- Odds -->
+            <div id="odds-container" class="space-y-6"></div>
 
-                <div class="flex gap-4">
-                    <button id="tambah-odds"
-                            class="flex-1 bg-white hover:bg-emerald-400 text-zinc-900 font-semibold py-5 rounded-2xl transition-all flex items-center justify-center gap-2 text-lg">
-                        <i class="fas fa-plus"></i> TAMBAH ODDS
-                    </button>
-                    <button id="kurangi-odds"
-                            class="flex-1 bg-zinc-800 hover:bg-red-600 font-semibold py-5 rounded-2xl transition-all text-lg">
-                        KURANGI ODDS
-                    </button>
-                </div>
-
+            <div class="flex gap-4 mt-10">
+                <button id="tambah-odds" 
+                        class="flex-1 bg-white text-black font-semibold py-5 rounded-2xl text-xl flex items-center justify-center gap-2 hover:bg-emerald-400 transition-all">
+                    <i class="fas fa-plus"></i> TAMBAH ODDS
+                </button>
+                <button id="kurangi-odds"
+                        class="flex-1 bg-[#1a2a27] hover:bg-red-600 font-semibold py-5 rounded-2xl text-xl transition-all">
+                    KURANGI ODDS
+                </button>
             </div>
         </div>
 
-        <!-- RESULT -->
+        <!-- RIGHT: Result -->
         <div class="lg:col-span-5">
-            <div class="sticky top-8">
-                <div class="glass border border-emerald-500/30 rounded-3xl p-8 text-center">
-                    <p class="text-emerald-400 text-sm tracking-[2px] mb-2">TOTAL KEMENANGAN</p>
-                    <h2 id="total-kemenangan" class="text-6xl font-bold text-white mb-4">Rp 0</h2>
-                    <div class="inline-flex items-baseline gap-2 bg-black/40 rounded-2xl px-8 py-3">
+            <div class="glass border border-emerald-500/30 rounded-3xl p-8 h-full flex flex-col">
+
+                <!-- Total Kemenangan -->
+                <div class="mb-8">
+                    <label class="block text-emerald-400 text-sm font-medium mb-3">TOTAL KEMENANGAN</label>
+                    <div id="total-kemenangan" class="text-6xl font-bold leading-none mb-4">Rp 633.162,5</div>
+                    <div class="inline-flex bg-black/60 rounded-2xl px-6 py-3 items-center gap-3">
                         <span class="text-emerald-400 font-medium">MULTIPLIER</span>
-                        <span id="multiplier" class="font-mono text-4xl font-bold text-emerald-400">x1.00</span>
+                        <span id="multiplier" class="text-4xl font-bold text-emerald-400">x6.33</span>
                     </div>
                 </div>
 
                 <!-- Breakdown -->
-                <div class="mt-8 glass border border-white/10 rounded-3xl p-8">
-                    <h3 class="font-semibold text-lg mb-6 flex items-center gap-3">
-                        <i class="fas fa-list-check text-emerald-400"></i>
-                        BREAKDOWN PARLAY
+                <div class="flex-1">
+                    <h3 class="flex items-center gap-2 text-emerald-400 font-medium mb-5">
+                        <i class="fas fa-list-check"></i> BREAKDOWN PARLAY
                     </h3>
-                    <div id="breakdown" class="space-y-4 text-sm"></div>
+                    <div id="breakdown" class="space-y-4"></div>
                 </div>
 
-                <!-- Action Buttons -->
-                <div class="mt-8 flex gap-4">
+                <!-- Buttons -->
+                <div class="flex gap-4 mt-8">
                     <button id="reset" 
-                            class="flex-1 py-5 bg-zinc-800 hover:bg-zinc-700 rounded-2xl font-semibold text-lg flex items-center justify-center gap-2">
+                            class="flex-1 py-5 bg-[#1a2a27] hover:bg-zinc-700 rounded-2xl font-semibold text-lg flex items-center justify-center gap-2">
                         <i class="fas fa-rotate-right"></i> RESET
                     </button>
                     <button id="copy-result" 
@@ -109,65 +103,57 @@
         </div>
     </div>
 
-    <!-- Partner Banners -->
-    <div class="mt-16">
-        <p class="text-center text-zinc-500 text-sm mb-6 tracking-widest">SUPPORTED BY</p>
-        <div id="gif-container" class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <!-- Banner kamu tetap sama, tinggal copy-paste -->
-            <a href="https://onlinedewapokerzona.hair/" target="_blank" class="block">
-                <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_dewapoker_dewapoker_gif_720x89.gif" alt="Dewapoker" class="rounded-2xl w-full">
-            </a>
-            <a href="https://zonaasiapoker88.sbs/" target="_blank" class="block">
-                <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_poker88_POKER88_Banners_2.gif" alt="Poker88" class="rounded-2xl w-full">
-            </a>
-            <a href="#" target="_blank" class="block">
-                <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_dominobet_dominobet_gif_720x89.gif" alt="Dominobet" class="rounded-2xl w-full">
-            </a>
-            <a href="#" target="_blank" class="block">
-                <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_nagapoker_nagapoker-gift.gif" alt="Nagapoker" class="rounded-2xl w-full">
-            </a>
-            <!-- Tambah sisanya sesuai kebutuhan -->
+    <!-- Supported By -->
+    <div class="mt-16 text-center">
+        <p class="text-zinc-500 text-sm tracking-widest mb-6">SUPPORTED BY</p>
+        <div class="flex flex-wrap justify-center gap-4 opacity-90">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_dewapoker_dewapoker_gif_720x89.gif" alt="Dewapoker" class="h-12 rounded-xl">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_poker88_POKER88_Banners_2.gif" alt="Poker88" class="h-12 rounded-xl">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_dominobet_dominobet_gif_720x89.gif" alt="Dominobet" class="h-12 rounded-xl">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_nagapoker_nagapoker-gift.gif" alt="Nagapoker" class="h-12 rounded-xl">
         </div>
     </div>
 </div>
 
 <script>
-    // Tailwind config
+    // Tailwind
     tailwind.config = { content: ["./**/*.{html,js}"] }
 
     const jumlahTaruhanInput = document.getElementById('jumlah-taruhan')
     const oddsContainer = document.getElementById('odds-container')
-    const tambahBtn = document.getElementById('tambah-odds')
-    const kurangiBtn = document.getElementById('kurangi-odds')
     const totalKemenanganEl = document.getElementById('total-kemenangan')
     const multiplierEl = document.getElementById('multiplier')
     const breakdownEl = document.getElementById('breakdown')
+    const tambahBtn = document.getElementById('tambah-odds')
+    const kurangiBtn = document.getElementById('kurangi-odds')
     const resetBtn = document.getElementById('reset')
     const copyBtn = document.getElementById('copy-result')
 
     let oddsCount = 3
 
-    // Format Rupiah
     function formatRupiah(angka) {
-        return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(angka)
+        return new Intl.NumberFormat('id-ID', { 
+            style: 'currency', 
+            currency: 'IDR', 
+            minimumFractionDigits: 0 
+        }).format(angka)
     }
 
     function formatRibuan(value) {
         return value.replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     }
 
-    // Buat satu row odds
     function createOddRow(index) {
         const div = document.createElement('div')
-        div.className = 'odd-row flex flex-col md:flex-row gap-4 items-start bg-zinc-900 rounded-2xl p-5 border border-white/10'
+        div.className = 'grid grid-cols-2 gap-4 bg-[#1a2a27] border border-white/10 rounded-2xl p-6'
         div.innerHTML = `
-            <div class="flex-1">
+            <div>
                 <label class="block text-xs text-zinc-400 mb-1">Odds ${index}</label>
-                <input type="number" class="odds w-full bg-transparent text-3xl font-semibold outline-none border-b border-zinc-700 focus:border-emerald-500" placeholder="1.85" value="1.85">
+                <input type="number" class="odds w-full bg-transparent text-4xl font-semibold outline-none border-b border-white/20 focus:border-emerald-500 pb-2" value="1.85" step="0.01">
             </div>
-            <div class="flex-1">
+            <div>
                 <label class="block text-xs text-zinc-400 mb-1">Hasil</label>
-                <select class="hasil w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-4 text-lg focus:border-emerald-500 outline-none">
+                <select class="hasil w-full bg-[#111f1c] border border-white/20 rounded-2xl px-5 py-4 text-lg outline-none">
                     <option value="menang">Menang</option>
                     <option value="menang-setengah">Menang Setengah</option>
                     <option value="seri">Seri</option>
@@ -179,7 +165,6 @@
         return div
     }
 
-    // Render semua odds
     function renderOdds() {
         oddsContainer.innerHTML = ''
         for (let i = 1; i <= oddsCount; i++) {
@@ -188,11 +173,8 @@
         calculateParlay()
     }
 
-    // Hitung parlay (real-time)
     function calculateParlay() {
-        const jumlahTaruhanStr = jumlahTaruhanInput.value.replace(/\./g, '')
-        const jumlahTaruhan = parseFloat(jumlahTaruhanStr) || 0
-
+        const jumlah = parseFloat(jumlahTaruhanInput.value.replace(/\./g, '')) || 0
         const oddsInputs = oddsContainer.querySelectorAll('.odds')
         const hasilSelects = oddsContainer.querySelectorAll('.hasil')
 
@@ -201,57 +183,36 @@
         let breakdownHTML = ''
 
         oddsInputs.forEach((input, i) => {
-            const odds = parseFloat(input.value) || 0
+            const odds = parseFloat(input.value) || 1
             const hasil = hasilSelects[i].value
             let multiplier = 1
 
-            if (hasil === 'kalah') {
-                kalah = true
-                multiplier = 0
-            } else if (hasil === 'menang-setengah') {
-                multiplier = (odds + 1) / 2
-            } else if (hasil === 'seri') {
-                multiplier = 1
-            } else if (hasil === 'kalah-setengah') {
-                multiplier = 0.5
-            } else {
-                multiplier = odds
-            }
+            if (hasil === 'kalah') { kalah = true; multiplier = 0 }
+            else if (hasil === 'menang-setengah') multiplier = (odds + 1) / 2
+            else if (hasil === 'seri') multiplier = 1
+            else if (hasil === 'kalah-setengah') multiplier = 0.5
+            else multiplier = odds
 
             totalMultiplier *= multiplier
 
-            // Breakdown
             breakdownHTML += `
-                <div class="flex justify-between items-center py-2 border-b border-white/10 last:border-none">
-                    <div>
-                        <span class="font-medium">Odds ${i+1}</span> 
-                        <span class="text-zinc-400 text-xs">(${hasil.replace('-', ' ')})</span>
-                    </div>
-                    <div class="font-mono text-emerald-400">${multiplier.toFixed(2)}x</div>
+                <div class="flex justify-between items-center py-3 border-b border-white/10 last:border-none">
+                    <span class="font-medium">Odds ${i+1} <span class="text-zinc-400 text-sm">(${hasil.replace('-', ' ')})</span></span>
+                    <span class="font-mono text-emerald-400">${multiplier.toFixed(2)}x</span>
                 </div>`
         })
 
-        const totalKemenangan = kalah ? 0 : jumlahTaruhan * totalMultiplier
+        const total = kalah ? 0 : jumlah * totalMultiplier
 
-        // Update UI
-        totalKemenanganEl.textContent = formatRupiah(totalKemenangan)
+        totalKemenanganEl.textContent = formatRupiah(total)
         multiplierEl.textContent = `x${totalMultiplier.toFixed(2)}`
-        breakdownEl.innerHTML = breakdownHTML || '<p class="text-zinc-500 italic">Tambahkan odds untuk melihat breakdown</p>'
+        breakdownEl.innerHTML = breakdownHTML || '<p class="text-zinc-400 italic">Tambahkan odds untuk melihat breakdown</p>'
     }
 
     // Event listeners
-    tambahBtn.addEventListener('click', () => {
-        oddsCount++
-        renderOdds()
-    })
-
-    kurangiBtn.addEventListener('click', () => {
-        if (oddsCount > 1) {
-            oddsCount--
-            renderOdds()
-        }
-    })
-
+    tambahBtn.addEventListener('click', () => { oddsCount++; renderOdds() })
+    kurangiBtn.addEventListener('click', () => { if (oddsCount > 1) { oddsCount--; renderOdds() } })
+    
     resetBtn.addEventListener('click', () => {
         jumlahTaruhanInput.value = '100000'
         oddsCount = 3
@@ -259,17 +220,15 @@
     })
 
     copyBtn.addEventListener('click', () => {
-        const text = `Parlay Calculator\nJumlah Taruhan: ${totalKemenanganEl.textContent}\nMultiplier: ${multiplierEl.textContent}`
+        const text = `Parlay\nJumlah: ${totalKemenanganEl.textContent}\nMultiplier: ${multiplierEl.textContent}`
         navigator.clipboard.writeText(text).then(() => {
-            copyBtn.innerHTML = `<i class="fas fa-check"></i> COPIED!`
-            setTimeout(() => {
-                copyBtn.innerHTML = `<i class="fas fa-copy"></i> COPY HASIL`
-            }, 2000)
+            copyBtn.innerHTML = `✅ COPIED!`
+            setTimeout(() => copyBtn.innerHTML = `<i class="fas fa-copy"></i> COPY HASIL`, 2000)
         })
     })
 
-    // Real-time update
-    function addRealTimeListeners() {
+    // Real-time
+    function addListeners() {
         oddsContainer.addEventListener('input', calculateParlay)
         oddsContainer.addEventListener('change', calculateParlay)
         jumlahTaruhanInput.addEventListener('input', () => {
@@ -279,10 +238,9 @@
         })
     }
 
-    // Inisialisasi
+    // Init
     renderOdds()
-    addRealTimeListeners()
+    addListeners()
 </script>
-
 </body>
 </html>
