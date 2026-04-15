@@ -43,7 +43,7 @@
                 </div>
             </div>
 
-            <!-- Odds Container -->
+            <!-- Odds Container (KOSONG saat pertama load) -->
             <div id="odds-container" class="space-y-5"></div>
 
             <!-- Buttons -->
@@ -66,10 +66,10 @@
                 <!-- Total Kemenangan -->
                 <div>
                     <label class="text-emerald-400 text-sm font-medium mb-3 block">TOTAL KEMENANGAN</label>
-                    <div id="total-kemenangan" class="text-6xl font-bold mb-3">Rp 633.162,5</div>
+                    <div id="total-kemenangan" class="text-6xl font-bold mb-3">Rp 0</div>
                     <div class="bg-black/70 inline-flex items-center rounded-3xl px-7 py-3 gap-4">
                         <span class="text-emerald-400 font-medium">MULTIPLIER</span>
-                        <span id="multiplier" class="text-4xl font-bold text-emerald-400">x6.33</span>
+                        <span id="multiplier" class="text-4xl font-bold text-emerald-400">x1.00</span>
                     </div>
                 </div>
 
@@ -96,7 +96,7 @@
         </div>
     </div>
 
-    <!-- SUPPORTED BY - SEMUA 8 BANNER SUDAH DITAMBAHKAN -->
+    <!-- SUPPORTED BY (8 banner) -->
     <div class="mt-16 text-center">
         <p class="text-zinc-500 text-sm tracking-widest mb-6">SUPPORTED BY</p>
         <div class="flex flex-wrap justify-center items-center gap-6 opacity-90">
@@ -145,7 +145,7 @@
         div.innerHTML = `
             <div>
                 <label class="text-xs text-zinc-400 block mb-2">Odds ${index}</label>
-                <input type="text" class="odds w-full bg-transparent text-5xl font-semibold outline-none" value="1,85">
+                <input type="text" class="odds w-full bg-transparent text-5xl font-semibold outline-none" placeholder="1,85">
             </div>
             <div>
                 <label class="text-xs text-zinc-400 block mb-2">Hasil</label>
@@ -182,7 +182,7 @@
 
         oddsInputs.forEach((input, i) => {
             let oddsStr = input.value.replace(',', '.')
-            const odds = parseFloat(oddsStr) || 1
+            const odds = parseFloat(oddsStr) || 1          // kalau kosong = 1x (netral)
             const hasil = hasilSelects[i].value
             let multiplier = 1
 
@@ -205,7 +205,7 @@
 
         totalKemenanganEl.textContent = formatRupiah(total)
         multiplierEl.textContent = `x${totalMultiplier.toFixed(2)}`
-        breakdownEl.innerHTML = breakdownHTML
+        breakdownEl.innerHTML = breakdownHTML || '<p class="text-zinc-400 italic text-center py-8">Isi odds di sebelah kiri untuk melihat breakdown</p>'
     }
 
     tambahBtn.addEventListener('click', () => { oddsCount++; renderOdds() })
@@ -235,6 +235,7 @@
         })
     }
 
+    // Init
     renderOdds()
     addListeners()
 </script>
