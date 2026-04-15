@@ -108,24 +108,24 @@
         </div>
     </div>
 
-    <!-- SUPPORTED BY - SEMUA BANNER LANGSUNG TERLIHAT -->
+    <!-- SUPPORTED BY - SUDAH DIOPTIMASI RESPONSIF -->
     <div class="mt-14 text-center">
         <p class="text-zinc-500 text-xs tracking-widest mb-5">SUPPORTED BY</p>
-        <div class="flex flex-wrap justify-center items-center gap-4">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_dewapoker_dewapoker_gif_720x89.gif" alt="Dewapoker" class="h-12">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_poker88_POKER88_Banners_2.gif" alt="Poker88" class="h-12">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_dominobet_dominobet_gif_720x89.gif" alt="Dominobet" class="h-12">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_nagapoker_nagapoker-gift.gif" alt="Nagapoker" class="h-12">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_lapak303_lapak303_gif_720x89.gif" alt="Lapak303" class="h-12">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_kartupoker_kartupoker_gif_720x89.gif" alt="Kartupoker" class="h-12">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_domino88_domino88_gif_720x89.gif" alt="Domino88" class="h-12">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_remipoker_remipoker_gif_720x89.gif" alt="Remipoker" class="h-12">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_dewapoker_dewapoker_gif_720x89.gif" alt="Dewapoker" class="h-9 sm:h-10 md:h-12 w-full object-contain">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_poker88_POKER88_Banners_2.gif" alt="Poker88" class="h-9 sm:h-10 md:h-12 w-full object-contain">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_dominobet_dominobet_gif_720x89.gif" alt="Dominobet" class="h-9 sm:h-10 md:h-12 w-full object-contain">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_nagapoker_nagapoker-gift.gif" alt="Nagapoker" class="h-9 sm:h-10 md:h-12 w-full object-contain">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_lapak303_lapak303_gif_720x89.gif" alt="Lapak303" class="h-9 sm:h-10 md:h-12 w-full object-contain">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_kartupoker_kartupoker_gif_720x89.gif" alt="Kartupoker" class="h-9 sm:h-10 md:h-12 w-full object-contain">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_domino88_domino88_gif_720x89.gif" alt="Domino88" class="h-9 sm:h-10 md:h-12 w-full object-contain">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_remipoker_remipoker_gif_720x89.gif" alt="Remipoker" class="h-9 sm:h-10 md:h-12 w-full object-contain">
         </div>
     </div>
 </div>
 
 <script>
-    // Script tetap sama seperti sebelumnya
+    // Script tetap sama (tidak ada perubahan fungsi)
     tailwind.config = { content: ["./**/*.{html,js}"] }
 
     const jumlahTaruhanInput = document.getElementById('jumlah-taruhan')
@@ -266,8 +266,7 @@
         const total = totalKemenanganEl.textContent
         const multiplier = multiplierEl.textContent
         const message = `🎯 PARLAY CALCULATOR\n\nTotal Kemenangan: ${total}\nMultiplier: ${multiplier}\n\nDihitung di https://kalkulator-parlay.vercel.app/`
-        const waUrl = `https://wa.me/?text=${encodeURIComponent(message)}`
-        window.open(waUrl, '_blank')
+        window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank')
     })
 
     contohBtn.addEventListener('click', () => {
