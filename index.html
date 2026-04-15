@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MP PARLAY</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            background-image: url('https://mrwallpaper.com/images/high/uefa-champions-league-star-football-logo-8dv90jbvwwhzp9c0.webp');
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: white;
+        }
+        #parlay-form {
+            width: 350px;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            text-align: center;
+        }
+        .odd-input {
+            margin-bottom: 10px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .odd-input label {
+            margin-right: 10px;
+        }
+        .odd-input input[type="number"] {
+            margin-right: 10px;
+            width: 60px;
+            font-size: 14px;
+        }
+        .odd-input select {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>KALKULATOR PARLAY</h1>
+    <div id="parlay-form">
+        <label for="jumlah-taruhan">Jumlah Taruhan :</label>
+        <input type="text" id="jumlah-taruhan" value=""><br><br>
+
+        <div id="odds-container">
+            <div class="odd-input">
+                <label>Odds 1:</label>
+                <input type="number" class="odds" value="">
+                <select class="hasil">
+                    <option value="menang">Menang</option>
+                    <option value="menang-setengah">Menang Setengah</option>
+                    <option value="seri">Seri</option>
+                    <option value="kalah-setengah">Kalah Setengah</option>
+                    <option value="kalah">Kalah</option>
+                </select>
+            </div>
+            <div class="odd-input">
+                <label>Odds 2:</label>
+                <input type="number" class="odds" value="">
+                <select class="hasil">
+                    <option value="menang">Menang</option>
+                    <option value="menang-setengah">Menang Setengah</option>
+                    <option value="seri">Seri</option>
+                    <option value="kalah-setengah">Kalah Setengah</option>
+                    <option value="kalah">Kalah</option>
+                </select>
+            </div>
+            <div class="odd-input">
+                <label>Odds 3:</label>
+                <input type="number" class="odds" value="">
+                <select class="hasil">
+                    <option value="menang">Menang</option>
+                    <option value="menang-setengah">Menang Setengah</option>
+                    <option value="seri">Seri</option>
+                    <option value="kalah-setengah">Kalah Setengah</option>
+                    <option value="kalah">Kalah</option>
+                </select>
+            </div>
+        </div>
+
+        <button id="tambah-odds">Tambah Odds</button>
+        <button id="kurangi-odds">Kurangi Odds</button>
+        <button id="hitung-parlay">Hitung Parlay</button><br><br>
+
+        <label>Total Kemenangan:</label>
+        <input type="text" id="total-kemenangan" readonly>
+    </div>
+
+    <script>
+        const jumlahTaruhanInput = document.getElementById('jumlah-taruhan');
+        const oddsContainer = document.getElementById('odds-container');
+        const tambahOddsButton = document.getElementById('tambah-odds');
+        const kurangiOddsButton = document.getElementById('kurangi-odds');
+        const hitungParlayButton = document.getElementById('hitung-parlay');
+        const totalKemenanganInput = document.getElementById('total-kemenangan');
+
+        tambahOddsButton.addEventListener('click', () => {
+            const oddsInputCount = oddsContainer.querySelectorAll('.odd-input').length + 1;
+            const newOddsInput = document.createElement('div');
+            newOddsInput.classList.add('odd-input');
+            newOddsInput.innerHTML = `
+                <label>Odds ${oddsInputCount}:</label>
+                <input type="number" class="odds" value="">
+                <select class="hasil">
+                    <option value="menang">Menang</option>
+                    <option value="menang-setengah">Menang Setengah</option>
+                    <option value="seri">Seri</option>
+                    <option value="kalah-setengah">Kalah Setengah</option>
+                    <option value="kalah">Kalah</option>
+                </select>
+            `;
+            oddsContainer.appendChild(newOddsInput);
+        });
+
+        kurangiOddsButton.addEventListener('click', () => {
+            const oddsInputs = oddsContainer.querySelectorAll('.odd-input');
+            if (oddsInputs.length > 1) {
+                oddsContainer.removeChild(oddsInputs[oddsInputs.length - 1]);
+            }
+        });
+
+        hitungParlayButton.addEventListener('click', () => {
+            const jumlahTaruhan = parseFloat(jumlahTaruhanInput.value.replace(/\./g, '')); // Menghilangkan titik dan mengubah ke float
+            const oddsInputs = oddsContainer.querySelectorAll('.odds');
+            const hasilInputs = oddsContainer.querySelectorAll('.hasil');
+            let totalOdds = 1;
+            let kalah = false;
+
+            oddsInputs.forEach((input, index) => {
+                const odds = parseFloat(input.value);
+                const hasil = hasilInputs[index].value;
+
+                if (hasil === 'kalah') {
+                    kalah = true;
+                } else if (hasil === 'menang-setengah') {
+                    totalOdds *= (odds + 1) / 2;
+                } else if (hasil === 'seri') {
+                    totalOdds *= 1;
+                } else if (hasil === 'kalah-setengah') {
+                    totalOdds *= 0.5;
+                } else {
+                    totalOdds *= odds;
+                }
+            });
+
+            const totalKemenangan = kalah ? 0 : jumlahTaruhan * totalOdds;
+            totalKemenanganInput.value = formatRupiah(totalKemenangan);
+        });
+
+        function formatRupiah(angka) {
+            const formatter = new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR'
+            });
+            return formatter.format(angka);
+        }
+
+        // Fungsi untuk memformat input jumlah taruhan saat diketik
+        jumlahTaruhanInput.addEventListener('input', function () {
+            let value = this.value.replace(/[^0-9]/g, ''); // Hapus karakter non-angka
+            if (value) {
+                this.value = formatRibuan(value);
+            } else {
+                this.value = '';
+            }
+        });
+
+        function formatRibuan(angka) {
+            let reverse = angka.toString().split('').reverse().join(''),
+                ribuan = reverse.match(/\d{1,3}/g);
+            return ribuan.join('.').split('').reverse().join('');
+        }
+    </script>
+     <div id="gif-container">
+        <a href="https://onlinedewapokerzona.hair/" target="_blank">
+        <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_dewapoker_dewapoker_gif_720x89.gif" alt="GIF Banner" style="max-width: 30%;">
+        </a>
+        <a href="https://zonaasiapoker88.sbs/" target="_blank">
+        <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_poker88_POKER88_Banners_2.gif" alt="GIF Banner" style="max-width: 30%;">
+        </a>
+        <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_dominobet_dominobet_gif_720x89.gif" alt="GIF Banner" style="max-width: 30%;">
+        <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_nagapoker_nagapoker-gift.gif" alt="GIF Banner" style="max-width: 30%;">
+        <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_lapak303_lapak303_gif_720x89.gif" alt="GIF Banner" style="max-width: 30%;">
+        <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_kartupoker_kartupoker_gif_720x89.gif" alt="GIF Banner" style="max-width: 30%;">
+        <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_domino88_domino88_gif_720x89.gif" alt="GIF Banner" style="max-width: 30%;">
+        <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_remipoker_remipoker_gif_720x89.gif" alt="GIF Banner" style="max-width: 30%;">
+    </div>
+</body>
+</html>
