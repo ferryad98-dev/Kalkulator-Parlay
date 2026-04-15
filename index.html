@@ -1,192 +1,288 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>MP PARLAY</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kalkulator Parlay Modern - Hitung parlay dengan cepat dan akurat">
+    <title>MP PARLAY • Kalkulator Parlay</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
         body {
-            font-family: sans-serif;
-            text-align: center;
-            background-image: url('https://mrwallpaper.com/images/high/uefa-champions-league-star-football-logo-8dv90jbvwwhzp9c0.webp');
-            background-size: cover;
-            background-repeat: no-repeat;
-            color: white;
+            font-family: 'Inter', sans-serif;
         }
-        #parlay-form {
-            width: 350px;
-            margin: 20px auto;
-            border: 1px solid #ccc;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.7);
-            text-align: center;
+        .title-font {
+            font-family: 'Space Grotesk', sans-serif;
         }
-        .odd-input {
-            margin-bottom: 10px;
-            text-align: left;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .odd-input label {
-            margin-right: 10px;
-        }
-        .odd-input input[type="number"] {
-            margin-right: 10px;
-            width: 60px;
-            font-size: 14px;
-        }
-        .odd-input select {
-            font-size: 14px;
+        .glass {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(16px);
         }
     </style>
 </head>
-<body>
-    <h1>KALKULATOR PARLAY</h1>
-    <div id="parlay-form">
-        <label for="jumlah-taruhan">Jumlah Taruhan :</label>
-        <input type="text" id="jumlah-taruhan" value=""><br><br>
+<body class="bg-zinc-950 text-white min-h-screen bg-[radial-gradient(at_top,#052e16_0%,#000_50%)]">
 
-        <div id="odds-container">
-            <div class="odd-input">
-                <label>Odds 1:</label>
-                <input type="number" class="odds" value="">
-                <select class="hasil">
-                    <option value="menang">Menang</option>
-                    <option value="menang-setengah">Menang Setengah</option>
-                    <option value="seri">Seri</option>
-                    <option value="kalah-setengah">Kalah Setengah</option>
-                    <option value="kalah">Kalah</option>
-                </select>
-            </div>
-            <div class="odd-input">
-                <label>Odds 2:</label>
-                <input type="number" class="odds" value="">
-                <select class="hasil">
-                    <option value="menang">Menang</option>
-                    <option value="menang-setengah">Menang Setengah</option>
-                    <option value="seri">Seri</option>
-                    <option value="kalah-setengah">Kalah Setengah</option>
-                    <option value="kalah">Kalah</option>
-                </select>
-            </div>
-            <div class="odd-input">
-                <label>Odds 3:</label>
-                <input type="number" class="odds" value="">
-                <select class="hasil">
-                    <option value="menang">Menang</option>
-                    <option value="menang-setengah">Menang Setengah</option>
-                    <option value="seri">Seri</option>
-                    <option value="kalah-setengah">Kalah Setengah</option>
-                    <option value="kalah">Kalah</option>
-                </select>
+<div class="max-w-5xl mx-auto px-6 py-10">
+
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-10">
+        <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-emerald-500 rounded-2xl flex items-center justify-center text-4xl">⚽</div>
+            <h1 class="title-font text-6xl font-bold tracking-tighter">PARLAY</h1>
+        </div>
+        <div>
+            <span class="px-4 py-2 bg-emerald-500/10 text-emerald-400 rounded-3xl text-sm font-medium border border-emerald-500/30">
+            V2.0 • Modern
+          </span>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+        <!-- FORM -->
+        <div class="lg:col-span-7">
+            <div class="glass border border-white/10 rounded-3xl p-8 shadow-2xl">
+
+                <!-- Jumlah Taruhan -->
+                <div class="mb-8">
+                    <label class="block text-emerald-400 text-sm font-medium mb-3 tracking-widest">JUMLAH TARUHAN</label>
+                    <div class="relative">
+                        <span class="absolute left-6 top-1/2 -translate-y-1/2 text-4xl text-zinc-400">Rp</span>
+                        <input id="jumlah-taruhan" 
+                               type="text"
+                               class="w-full bg-zinc-900 border border-zinc-700 focus:border-emerald-500 rounded-2xl px-14 py-6 text-5xl font-semibold outline-none transition-all"
+                               placeholder="100.000" value="100000">
+                    </div>
+                </div>
+
+                <!-- Odds Container -->
+                <div id="odds-container" class="space-y-5 mb-8"></div>
+
+                <div class="flex gap-4">
+                    <button id="tambah-odds"
+                            class="flex-1 bg-white hover:bg-emerald-400 text-zinc-900 font-semibold py-5 rounded-2xl transition-all flex items-center justify-center gap-2 text-lg">
+                        <i class="fas fa-plus"></i> TAMBAH ODDS
+                    </button>
+                    <button id="kurangi-odds"
+                            class="flex-1 bg-zinc-800 hover:bg-red-600 font-semibold py-5 rounded-2xl transition-all text-lg">
+                        KURANGI ODDS
+                    </button>
+                </div>
+
             </div>
         </div>
 
-        <button id="tambah-odds">Tambah Odds</button>
-        <button id="kurangi-odds">Kurangi Odds</button>
-        <button id="hitung-parlay">Hitung Parlay</button><br><br>
+        <!-- RESULT -->
+        <div class="lg:col-span-5">
+            <div class="sticky top-8">
+                <div class="glass border border-emerald-500/30 rounded-3xl p-8 text-center">
+                    <p class="text-emerald-400 text-sm tracking-[2px] mb-2">TOTAL KEMENANGAN</p>
+                    <h2 id="total-kemenangan" class="text-6xl font-bold text-white mb-4">Rp 0</h2>
+                    <div class="inline-flex items-baseline gap-2 bg-black/40 rounded-2xl px-8 py-3">
+                        <span class="text-emerald-400 font-medium">MULTIPLIER</span>
+                        <span id="multiplier" class="font-mono text-4xl font-bold text-emerald-400">x1.00</span>
+                    </div>
+                </div>
 
-        <label>Total Kemenangan:</label>
-        <input type="text" id="total-kemenangan" readonly>
+                <!-- Breakdown -->
+                <div class="mt-8 glass border border-white/10 rounded-3xl p-8">
+                    <h3 class="font-semibold text-lg mb-6 flex items-center gap-3">
+                        <i class="fas fa-list-check text-emerald-400"></i>
+                        BREAKDOWN PARLAY
+                    </h3>
+                    <div id="breakdown" class="space-y-4 text-sm"></div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="mt-8 flex gap-4">
+                    <button id="reset" 
+                            class="flex-1 py-5 bg-zinc-800 hover:bg-zinc-700 rounded-2xl font-semibold text-lg flex items-center justify-center gap-2">
+                        <i class="fas fa-rotate-right"></i> RESET
+                    </button>
+                    <button id="copy-result" 
+                            class="flex-1 py-5 bg-emerald-500 hover:bg-emerald-600 rounded-2xl font-semibold text-lg flex items-center justify-center gap-2">
+                        <i class="fas fa-copy"></i> COPY HASIL
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <script>
-        const jumlahTaruhanInput = document.getElementById('jumlah-taruhan');
-        const oddsContainer = document.getElementById('odds-container');
-        const tambahOddsButton = document.getElementById('tambah-odds');
-        const kurangiOddsButton = document.getElementById('kurangi-odds');
-        const hitungParlayButton = document.getElementById('hitung-parlay');
-        const totalKemenanganInput = document.getElementById('total-kemenangan');
+    <!-- Partner Banners -->
+    <div class="mt-16">
+        <p class="text-center text-zinc-500 text-sm mb-6 tracking-widest">SUPPORTED BY</p>
+        <div id="gif-container" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <!-- Banner kamu tetap sama, tinggal copy-paste -->
+            <a href="https://onlinedewapokerzona.hair/" target="_blank" class="block">
+                <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_dewapoker_dewapoker_gif_720x89.gif" alt="Dewapoker" class="rounded-2xl w-full">
+            </a>
+            <a href="https://zonaasiapoker88.sbs/" target="_blank" class="block">
+                <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_poker88_POKER88_Banners_2.gif" alt="Poker88" class="rounded-2xl w-full">
+            </a>
+            <a href="#" target="_blank" class="block">
+                <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_dominobet_dominobet_gif_720x89.gif" alt="Dominobet" class="rounded-2xl w-full">
+            </a>
+            <a href="#" target="_blank" class="block">
+                <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_nagapoker_nagapoker-gift.gif" alt="Nagapoker" class="rounded-2xl w-full">
+            </a>
+            <!-- Tambah sisanya sesuai kebutuhan -->
+        </div>
+    </div>
+</div>
 
-        tambahOddsButton.addEventListener('click', () => {
-            const oddsInputCount = oddsContainer.querySelectorAll('.odd-input').length + 1;
-            const newOddsInput = document.createElement('div');
-            newOddsInput.classList.add('odd-input');
-            newOddsInput.innerHTML = `
-                <label>Odds ${oddsInputCount}:</label>
-                <input type="number" class="odds" value="">
-                <select class="hasil">
+<script>
+    // Tailwind config
+    tailwind.config = { content: ["./**/*.{html,js}"] }
+
+    const jumlahTaruhanInput = document.getElementById('jumlah-taruhan')
+    const oddsContainer = document.getElementById('odds-container')
+    const tambahBtn = document.getElementById('tambah-odds')
+    const kurangiBtn = document.getElementById('kurangi-odds')
+    const totalKemenanganEl = document.getElementById('total-kemenangan')
+    const multiplierEl = document.getElementById('multiplier')
+    const breakdownEl = document.getElementById('breakdown')
+    const resetBtn = document.getElementById('reset')
+    const copyBtn = document.getElementById('copy-result')
+
+    let oddsCount = 3
+
+    // Format Rupiah
+    function formatRupiah(angka) {
+        return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(angka)
+    }
+
+    function formatRibuan(value) {
+        return value.replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    }
+
+    // Buat satu row odds
+    function createOddRow(index) {
+        const div = document.createElement('div')
+        div.className = 'odd-row flex flex-col md:flex-row gap-4 items-start bg-zinc-900 rounded-2xl p-5 border border-white/10'
+        div.innerHTML = `
+            <div class="flex-1">
+                <label class="block text-xs text-zinc-400 mb-1">Odds ${index}</label>
+                <input type="number" class="odds w-full bg-transparent text-3xl font-semibold outline-none border-b border-zinc-700 focus:border-emerald-500" placeholder="1.85" value="1.85">
+            </div>
+            <div class="flex-1">
+                <label class="block text-xs text-zinc-400 mb-1">Hasil</label>
+                <select class="hasil w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-4 text-lg focus:border-emerald-500 outline-none">
                     <option value="menang">Menang</option>
                     <option value="menang-setengah">Menang Setengah</option>
                     <option value="seri">Seri</option>
                     <option value="kalah-setengah">Kalah Setengah</option>
                     <option value="kalah">Kalah</option>
                 </select>
-            `;
-            oddsContainer.appendChild(newOddsInput);
-        });
+            </div>
+        `
+        return div
+    }
 
-        kurangiOddsButton.addEventListener('click', () => {
-            const oddsInputs = oddsContainer.querySelectorAll('.odd-input');
-            if (oddsInputs.length > 1) {
-                oddsContainer.removeChild(oddsInputs[oddsInputs.length - 1]);
-            }
-        });
-
-        hitungParlayButton.addEventListener('click', () => {
-            const jumlahTaruhan = parseFloat(jumlahTaruhanInput.value.replace(/\./g, '')); // Menghilangkan titik dan mengubah ke float
-            const oddsInputs = oddsContainer.querySelectorAll('.odds');
-            const hasilInputs = oddsContainer.querySelectorAll('.hasil');
-            let totalOdds = 1;
-            let kalah = false;
-
-            oddsInputs.forEach((input, index) => {
-                const odds = parseFloat(input.value);
-                const hasil = hasilInputs[index].value;
-
-                if (hasil === 'kalah') {
-                    kalah = true;
-                } else if (hasil === 'menang-setengah') {
-                    totalOdds *= (odds + 1) / 2;
-                } else if (hasil === 'seri') {
-                    totalOdds *= 1;
-                } else if (hasil === 'kalah-setengah') {
-                    totalOdds *= 0.5;
-                } else {
-                    totalOdds *= odds;
-                }
-            });
-
-            const totalKemenangan = kalah ? 0 : jumlahTaruhan * totalOdds;
-            totalKemenanganInput.value = formatRupiah(totalKemenangan);
-        });
-
-        function formatRupiah(angka) {
-            const formatter = new Intl.NumberFormat('id-ID', {
-                style: 'currency',
-                currency: 'IDR'
-            });
-            return formatter.format(angka);
+    // Render semua odds
+    function renderOdds() {
+        oddsContainer.innerHTML = ''
+        for (let i = 1; i <= oddsCount; i++) {
+            oddsContainer.appendChild(createOddRow(i))
         }
+        calculateParlay()
+    }
 
-        // Fungsi untuk memformat input jumlah taruhan saat diketik
-        jumlahTaruhanInput.addEventListener('input', function () {
-            let value = this.value.replace(/[^0-9]/g, ''); // Hapus karakter non-angka
-            if (value) {
-                this.value = formatRibuan(value);
+    // Hitung parlay (real-time)
+    function calculateParlay() {
+        const jumlahTaruhanStr = jumlahTaruhanInput.value.replace(/\./g, '')
+        const jumlahTaruhan = parseFloat(jumlahTaruhanStr) || 0
+
+        const oddsInputs = oddsContainer.querySelectorAll('.odds')
+        const hasilSelects = oddsContainer.querySelectorAll('.hasil')
+
+        let totalMultiplier = 1
+        let kalah = false
+        let breakdownHTML = ''
+
+        oddsInputs.forEach((input, i) => {
+            const odds = parseFloat(input.value) || 0
+            const hasil = hasilSelects[i].value
+            let multiplier = 1
+
+            if (hasil === 'kalah') {
+                kalah = true
+                multiplier = 0
+            } else if (hasil === 'menang-setengah') {
+                multiplier = (odds + 1) / 2
+            } else if (hasil === 'seri') {
+                multiplier = 1
+            } else if (hasil === 'kalah-setengah') {
+                multiplier = 0.5
             } else {
-                this.value = '';
+                multiplier = odds
             }
-        });
 
-        function formatRibuan(angka) {
-            let reverse = angka.toString().split('').reverse().join(''),
-                ribuan = reverse.match(/\d{1,3}/g);
-            return ribuan.join('.').split('').reverse().join('');
+            totalMultiplier *= multiplier
+
+            // Breakdown
+            breakdownHTML += `
+                <div class="flex justify-between items-center py-2 border-b border-white/10 last:border-none">
+                    <div>
+                        <span class="font-medium">Odds ${i+1}</span> 
+                        <span class="text-zinc-400 text-xs">(${hasil.replace('-', ' ')})</span>
+                    </div>
+                    <div class="font-mono text-emerald-400">${multiplier.toFixed(2)}x</div>
+                </div>`
+        })
+
+        const totalKemenangan = kalah ? 0 : jumlahTaruhan * totalMultiplier
+
+        // Update UI
+        totalKemenanganEl.textContent = formatRupiah(totalKemenangan)
+        multiplierEl.textContent = `x${totalMultiplier.toFixed(2)}`
+        breakdownEl.innerHTML = breakdownHTML || '<p class="text-zinc-500 italic">Tambahkan odds untuk melihat breakdown</p>'
+    }
+
+    // Event listeners
+    tambahBtn.addEventListener('click', () => {
+        oddsCount++
+        renderOdds()
+    })
+
+    kurangiBtn.addEventListener('click', () => {
+        if (oddsCount > 1) {
+            oddsCount--
+            renderOdds()
         }
-    </script>
-     <div id="gif-container">
-        <a href="https://onlinedewapokerzona.hair/" target="_blank">
-        <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_dewapoker_dewapoker_gif_720x89.gif" alt="GIF Banner" style="max-width: 30%;">
-        </a>
-        <a href="https://zonaasiapoker88.sbs/" target="_blank">
-        <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_poker88_POKER88_Banners_2.gif" alt="GIF Banner" style="max-width: 30%;">
-        </a>
-        <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_dominobet_dominobet_gif_720x89.gif" alt="GIF Banner" style="max-width: 30%;">
-        <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_nagapoker_nagapoker-gift.gif" alt="GIF Banner" style="max-width: 30%;">
-        <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_lapak303_lapak303_gif_720x89.gif" alt="GIF Banner" style="max-width: 30%;">
-        <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_kartupoker_kartupoker_gif_720x89.gif" alt="GIF Banner" style="max-width: 30%;">
-        <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_domino88_domino88_gif_720x89.gif" alt="GIF Banner" style="max-width: 30%;">
-        <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_remipoker_remipoker_gif_720x89.gif" alt="GIF Banner" style="max-width: 30%;">
-    </div>
+    })
+
+    resetBtn.addEventListener('click', () => {
+        jumlahTaruhanInput.value = '100000'
+        oddsCount = 3
+        renderOdds()
+    })
+
+    copyBtn.addEventListener('click', () => {
+        const text = `Parlay Calculator\nJumlah Taruhan: ${totalKemenanganEl.textContent}\nMultiplier: ${multiplierEl.textContent}`
+        navigator.clipboard.writeText(text).then(() => {
+            copyBtn.innerHTML = `<i class="fas fa-check"></i> COPIED!`
+            setTimeout(() => {
+                copyBtn.innerHTML = `<i class="fas fa-copy"></i> COPY HASIL`
+            }, 2000)
+        })
+    })
+
+    // Real-time update
+    function addRealTimeListeners() {
+        oddsContainer.addEventListener('input', calculateParlay)
+        oddsContainer.addEventListener('change', calculateParlay)
+        jumlahTaruhanInput.addEventListener('input', () => {
+            let val = jumlahTaruhanInput.value.replace(/[^0-9]/g, '')
+            jumlahTaruhanInput.value = formatRibuan(val)
+            calculateParlay()
+        })
+    }
+
+    // Inisialisasi
+    renderOdds()
+    addRealTimeListeners()
+</script>
+
 </body>
 </html>
