@@ -41,20 +41,19 @@
         <!-- LEFT CARD -->
         <div class="lg:col-span-7 glass border border-white/10 rounded-3xl p-5 sm:p-7">
             
-            <!-- JUMLAH TARUHAN - SUDAH DIRAPIKAN -->
+            <!-- JUMLAH TARUHAN - SUDAH DIRAPIKAN TOTAL -->
             <div class="mb-6">
                 <label class="text-emerald-400 text-xs font-medium mb-2 block">JUMLAH TARUHAN</label>
                 <div class="bg-[#11221f] border border-white/10 rounded-3xl px-6 py-6 flex items-center">
                     <span class="text-3xl text-zinc-400">Rp</span>
                     <input id="jumlah-taruhan" type="text" 
-                           class="bg-transparent outline-none flex-1 text-5xl font-semibold text-right px-4"
+                           class="bg-transparent outline-none flex-1 text-5xl font-semibold text-right px-3"
                            placeholder="100.000" autofocus>
                 </div>
             </div>
 
             <div id="odds-container" class="space-y-4"></div>
 
-            <!-- Buttons -->
             <div class="flex flex-col sm:flex-row gap-3 mt-8">
                 <button id="tambah-odds" class="flex-1 bg-white text-black font-semibold py-4 rounded-3xl text-base flex items-center justify-center gap-2 hover:bg-emerald-400 transition-all">
                     <i class="fas fa-plus"></i> TAMBAH ODDS
@@ -71,7 +70,6 @@
         <!-- RIGHT CARD -->
         <div class="lg:col-span-5">
             <div class="glass border border-emerald-500/30 rounded-3xl p-5 sm:p-7 h-full flex flex-col">
-                
                 <div>
                     <label class="text-emerald-400 text-xs font-medium mb-2 block">TOTAL KEMENANGAN</label>
                     <div id="total-area" class="relative min-h-[80px] flex items-center justify-center">
@@ -97,7 +95,6 @@
                     <div id="breakdown" class="space-y-4 text-sm"></div>
                 </div>
 
-                <!-- Action Buttons - Font lebih kecil & rapi -->
                 <div class="flex gap-3 mt-8">
                     <button id="reset" class="flex-1 py-4 bg-[#11221f] hover:bg-zinc-700 rounded-3xl font-semibold text-base flex items-center justify-center gap-2">
                         <i class="fas fa-rotate-right"></i> RESET
