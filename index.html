@@ -23,36 +23,36 @@
 </head>
 <body class="bg-gradient-to-b from-[#0a1f1a] via-[#05130f] to-black text-white min-h-screen">
 
-<div class="max-w-6xl mx-auto px-6 py-10">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
 
     <!-- Header -->
-    <div class="flex justify-between items-center mb-10">
+    <div class="flex justify-between items-center mb-8 sm:mb-10">
         <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-emerald-500 rounded-2xl flex items-center justify-center text-3xl">⚽</div>
+            <div class="w-9 h-9 sm:w-10 sm:h-10 bg-emerald-500 rounded-2xl flex items-center justify-center text-3xl">⚽</div>
             <h1 class="title-font text-4xl font-bold tracking-tighter">PARLAY</h1>
         </div>
-        <div class="px-5 py-1.5 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-medium rounded-3xl">
+        <div class="px-4 py-1 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-medium rounded-3xl">
             V2.0 • Modern
         </div>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
 
         <!-- LEFT CARD -->
-        <div class="lg:col-span-7 glass border border-white/10 rounded-3xl p-7">
-            <div class="mb-7">
+        <div class="lg:col-span-7 glass border border-white/10 rounded-3xl p-5 sm:p-7">
+            <div class="mb-6">
                 <label class="text-emerald-400 text-xs font-medium mb-2 block">JUMLAH TARUHAN</label>
-                <div class="bg-[#11221f] border border-white/10 rounded-3xl px-7 py-6 flex items-center">
-                    <span class="text-3xl text-zinc-400 mr-4">Rp</span>
+                <div class="bg-[#11221f] border border-white/10 rounded-3xl px-6 py-5 flex items-center">
+                    <span class="text-3xl text-zinc-400 mr-3">Rp</span>
                     <input id="jumlah-taruhan" type="text" 
-                           class="bg-transparent outline-none flex-1 text-4xl font-semibold text-right min-w-0"
+                           class="bg-transparent outline-none flex-1 text-4xl font-semibold text-right"
                            placeholder="100.000" autofocus>
                 </div>
             </div>
 
             <div id="odds-container" class="space-y-4"></div>
 
-            <div class="flex gap-3 mt-8">
+            <div class="flex flex-col sm:flex-row gap-3 mt-8">
                 <button id="tambah-odds" class="flex-1 bg-white text-black font-semibold py-5 rounded-3xl text-lg flex items-center justify-center gap-2 hover:bg-emerald-400 transition-all">
                     <i class="fas fa-plus"></i> TAMBAH ODDS
                 </button>
@@ -67,10 +67,10 @@
 
         <!-- RIGHT CARD -->
         <div class="lg:col-span-5">
-            <div class="glass border border-emerald-500/30 rounded-3xl p-7 h-full flex flex-col">
+            <div class="glass border border-emerald-500/30 rounded-3xl p-5 sm:p-7 h-full flex flex-col">
                 <div>
                     <label class="text-emerald-400 text-xs font-medium mb-2 block">TOTAL KEMENANGAN</label>
-                    <div id="total-area" class="relative min-h-[88px] flex items-center justify-center">
+                    <div id="total-area" class="relative min-h-[80px] flex items-center justify-center">
                         <div id="loading-spinner" class="hidden flex flex-col items-center">
                             <div class="spinner"></div>
                             <p class="text-emerald-400 text-xs mt-3">MENGHITUNG...</p>
@@ -108,24 +108,24 @@
         </div>
     </div>
 
-    <!-- SUPPORTED BY - SUDAH DIOPTIMASI RESPONSIF -->
-    <div class="mt-14 text-center">
+    <!-- SUPPORTED BY - OPTIMASI RESPONSIF TERBARU -->
+    <div class="mt-12 text-center">
         <p class="text-zinc-500 text-xs tracking-widest mb-5">SUPPORTED BY</p>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_dewapoker_dewapoker_gif_720x89.gif" alt="Dewapoker" class="h-9 sm:h-10 md:h-12 w-full object-contain">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_poker88_POKER88_Banners_2.gif" alt="Poker88" class="h-9 sm:h-10 md:h-12 w-full object-contain">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_dominobet_dominobet_gif_720x89.gif" alt="Dominobet" class="h-9 sm:h-10 md:h-12 w-full object-contain">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_nagapoker_nagapoker-gift.gif" alt="Nagapoker" class="h-9 sm:h-10 md:h-12 w-full object-contain">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_lapak303_lapak303_gif_720x89.gif" alt="Lapak303" class="h-9 sm:h-10 md:h-12 w-full object-contain">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_kartupoker_kartupoker_gif_720x89.gif" alt="Kartupoker" class="h-9 sm:h-10 md:h-12 w-full object-contain">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_domino88_domino88_gif_720x89.gif" alt="Domino88" class="h-9 sm:h-10 md:h-12 w-full object-contain">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_remipoker_remipoker_gif_720x89.gif" alt="Remipoker" class="h-9 sm:h-10 md:h-12 w-full object-contain">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_dewapoker_dewapoker_gif_720x89.gif" alt="Dewapoker" class="h-10 sm:h-11 md:h-12 w-full object-contain mx-auto">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_poker88_POKER88_Banners_2.gif" alt="Poker88" class="h-10 sm:h-11 md:h-12 w-full object-contain mx-auto">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_dominobet_dominobet_gif_720x89.gif" alt="Dominobet" class="h-10 sm:h-11 md:h-12 w-full object-contain mx-auto">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_nagapoker_nagapoker-gift.gif" alt="Nagapoker" class="h-10 sm:h-11 md:h-12 w-full object-contain mx-auto">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_lapak303_lapak303_gif_720x89.gif" alt="Lapak303" class="h-10 sm:h-11 md:h-12 w-full object-contain mx-auto">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_kartupoker_kartupoker_gif_720x89.gif" alt="Kartupoker" class="h-10 sm:h-11 md:h-12 w-full object-contain mx-auto">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_domino88_domino88_gif_720x89.gif" alt="Domino88" class="h-10 sm:h-11 md:h-12 w-full object-contain mx-auto">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_remipoker_remipoker_gif_720x89.gif" alt="Remipoker" class="h-10 sm:h-11 md:h-12 w-full object-contain mx-auto">
         </div>
     </div>
 </div>
 
 <script>
-    // Script tetap sama (tidak ada perubahan fungsi)
+    // Script sama seperti sebelumnya (tidak ada perubahan fungsi)
     tailwind.config = { content: ["./**/*.{html,js}"] }
 
     const jumlahTaruhanInput = document.getElementById('jumlah-taruhan')
