@@ -19,10 +19,6 @@
         .neon-text {
             text-shadow: 0 0 15px #10b981, 0 0 30px #10b981;
         }
-        .banner-scroll {
-            scrollbar-width: none;
-        }
-        .banner-scroll::-webkit-scrollbar { display: none; }
     </style>
 </head>
 <body class="bg-gradient-to-b from-[#0a1f1a] via-[#05130f] to-black text-white min-h-screen">
@@ -112,23 +108,24 @@
         </div>
     </div>
 
-    <!-- SUPPORTED BY -->
+    <!-- SUPPORTED BY - SEMUA BANNER LANGSUNG TERLIHAT -->
     <div class="mt-14 text-center">
         <p class="text-zinc-500 text-xs tracking-widest mb-5">SUPPORTED BY</p>
-        <div class="banner-scroll flex overflow-x-auto gap-5 pb-4 snap-x snap-mandatory scroll-smooth">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_dewapoker_dewapoker_gif_720x89.gif" alt="Dewapoker" class="h-10 flex-shrink-0 snap-center">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_poker88_POKER88_Banners_2.gif" alt="Poker88" class="h-10 flex-shrink-0 snap-center">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_dominobet_dominobet_gif_720x89.gif" alt="Dominobet" class="h-10 flex-shrink-0 snap-center">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_nagapoker_nagapoker-gift.gif" alt="Nagapoker" class="h-10 flex-shrink-0 snap-center">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_lapak303_lapak303_gif_720x89.gif" alt="Lapak303" class="h-10 flex-shrink-0 snap-center">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_kartupoker_kartupoker_gif_720x89.gif" alt="Kartupoker" class="h-10 flex-shrink-0 snap-center">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_domino88_domino88_gif_720x89.gif" alt="Domino88" class="h-10 flex-shrink-0 snap-center">
-            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_remipoker_remipoker_gif_720x89.gif" alt="Remipoker" class="h-10 flex-shrink-0 snap-center">
+        <div class="flex flex-wrap justify-center items-center gap-4">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_dewapoker_dewapoker_gif_720x89.gif" alt="Dewapoker" class="h-12">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_poker88_POKER88_Banners_2.gif" alt="Poker88" class="h-12">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_dominobet_dominobet_gif_720x89.gif" alt="Dominobet" class="h-12">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_nagapoker_nagapoker-gift.gif" alt="Nagapoker" class="h-12">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_lapak303_lapak303_gif_720x89.gif" alt="Lapak303" class="h-12">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_kartupoker_kartupoker_gif_720x89.gif" alt="Kartupoker" class="h-12">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_domino88_domino88_gif_720x89.gif" alt="Domino88" class="h-12">
+            <img src="https://bas3data.xyz/assets/Image/Brand/Logo/banneratas_remipoker_remipoker_gif_720x89.gif" alt="Remipoker" class="h-12">
         </div>
     </div>
 </div>
 
 <script>
+    // Script tetap sama seperti sebelumnya
     tailwind.config = { content: ["./**/*.{html,js}"] }
 
     const jumlahTaruhanInput = document.getElementById('jumlah-taruhan')
@@ -248,7 +245,6 @@
         breakdownEl.innerHTML = breakdownHTML || '<p class="text-zinc-400 italic text-center py-6 text-sm">Isi jumlah taruhan & odds untuk melihat hasil</p>'
     }
 
-    // Event Listeners
     tambahBtn.addEventListener('click', () => { oddsCount++; renderOdds() })
     kurangiBtn.addEventListener('click', () => { if (oddsCount > 1) { oddsCount--; renderOdds() } })
 
@@ -266,7 +262,6 @@
         })
     })
 
-    // Share ke WhatsApp
     shareWaBtn.addEventListener('click', () => {
         const total = totalKemenanganEl.textContent
         const multiplier = multiplierEl.textContent
