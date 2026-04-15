@@ -33,17 +33,17 @@
         <!-- LEFT CARD -->
         <div class="lg:col-span-7 glass border border-white/10 rounded-3xl p-8">
             
-            <!-- Jumlah Taruhan -->
+            <!-- Jumlah Taruhan (SEKARANG KOSONG) -->
             <div class="mb-8">
                 <label class="text-emerald-400 text-sm font-medium mb-3 block">JUMLAH TARUHAN</label>
                 <div class="bg-[#11221f] border border-white/10 rounded-3xl px-8 py-7 text-6xl font-semibold flex items-center">
                     <span class="text-4xl text-zinc-400 mr-4">Rp</span>
                     <input id="jumlah-taruhan" type="text" 
-                           class="bg-transparent outline-none flex-1" value="100000">
+                           class="bg-transparent outline-none flex-1" placeholder="100.000">
                 </div>
             </div>
 
-            <!-- Odds Container (KOSONG saat pertama load) -->
+            <!-- Odds Container (juga kosong) -->
             <div id="odds-container" class="space-y-5"></div>
 
             <!-- Buttons -->
@@ -96,7 +96,7 @@
         </div>
     </div>
 
-    <!-- SUPPORTED BY (8 banner) -->
+    <!-- SUPPORTED BY -->
     <div class="mt-16 text-center">
         <p class="text-zinc-500 text-sm tracking-widest mb-6">SUPPORTED BY</p>
         <div class="flex flex-wrap justify-center items-center gap-6 opacity-90">
@@ -182,7 +182,7 @@
 
         oddsInputs.forEach((input, i) => {
             let oddsStr = input.value.replace(',', '.')
-            const odds = parseFloat(oddsStr) || 1          // kalau kosong = 1x (netral)
+            const odds = parseFloat(oddsStr) || 1
             const hasil = hasilSelects[i].value
             let multiplier = 1
 
@@ -205,14 +205,14 @@
 
         totalKemenanganEl.textContent = formatRupiah(total)
         multiplierEl.textContent = `x${totalMultiplier.toFixed(2)}`
-        breakdownEl.innerHTML = breakdownHTML || '<p class="text-zinc-400 italic text-center py-8">Isi odds di sebelah kiri untuk melihat breakdown</p>'
+        breakdownEl.innerHTML = breakdownHTML || '<p class="text-zinc-400 italic text-center py-8">Isi jumlah taruhan & odds untuk melihat hasil</p>'
     }
 
     tambahBtn.addEventListener('click', () => { oddsCount++; renderOdds() })
     kurangiBtn.addEventListener('click', () => { if (oddsCount > 1) { oddsCount--; renderOdds() } })
 
     resetBtn.addEventListener('click', () => {
-        jumlahTaruhanInput.value = '100000'
+        jumlahTaruhanInput.value = ''          // kosongkan jumlah taruhan
         oddsCount = 3
         renderOdds()
     })
